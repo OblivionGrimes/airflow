@@ -15,7 +15,7 @@ Airflow/
 │       ├── sqlite.py                 # Script relacionado ao SQLite, onde gero o demanda.db em 'core'
 │       ├── docs/
 │       │   ├── arquivos_brutos/      # Onde ficam os dados brutos baixados, gerar uma automação onde fosse baixados automaticamente os arquivos seria um pouco mais complexo e demorado, por isso optei por seguir no modelo padrão, onde é inserido o arquivo manualmente na pasta e o sistema lê. 
-│       │   └── arquivos_limpos/     # Onde ficariam os dados tratados e limpos, acabei não tendo tempo para completar essa parte (já que a logica seria que depois dos arquivos tratados seriam salvos novamente nessa pasta) então optei por não seguir por com essa parte por enquanto.
+│       │   └── arquivos_limpos/      # Onde ficariam os dados tratados e limpos, acabei não tendo tempo para completar essa parte (já que a logica seria que depois dos arquivos tratados seriam salvos novamente nessa pasta) então optei por não seguir por com essa parte por enquanto.
 │       │
 │       ├── src/
 │       │   ├── index_dag.py          # DAG principal do Airflow
@@ -28,7 +28,7 @@ Airflow/
 │       │   │
 │       │   ├── core/
 │       │   │   ├── db_connection.py  # Conexão com banco de dados
-|       |   |   └── demanda.db        # Onde fica meu dados do SQLite
+│       │   │   └── demanda.db        # Onde fica meu dados do SQLite
 │       │   │
 │       │   └── functions/
 │       │       ├── function.py       # Onde fica as funções de 'index_dag'
@@ -36,8 +36,6 @@ Airflow/
 │       │
 │       └── tests/
 │           └── teste.py              # Testes do projeto
-│
-|
 │
 └── .env                              # Variáveis de ambiente
 
