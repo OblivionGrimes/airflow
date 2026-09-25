@@ -5,6 +5,7 @@ Link do app -> https://airflow-cs-teste-tecnico.streamlit.app/
 # Estrutura das pastas    
 Segui com o padrão semelhante ao MVC, para melhor visualização e compreensão, com a ressalva de alguns ajustes devido a linguagem.
 
+```text
 Airflow/
 ├── docker-compose.yaml               # Compose padrão do airflow, com mudanças referentes ao demais containers integrados nele (Postgres e Redis), pois como no meu ambiente docker eu ja tenho ambos, so adicionei o airflow no mesmo network para comunicação das partes. 
 ├── README.md                         # Documentação
@@ -38,6 +39,7 @@ Airflow/
 │           └── teste.py              # Testes do projeto
 │
 └── .env                              # Variáveis de ambiente
+```
 
 # Decisões tecnicas
 O projeto foi desenvolvido no container airflow, utilizando tanto o postgres quando o sqlite para o banco de dados e a biblioteca pandas para manuseio dos dados pelo sistema. Pela necessidade do deploy publico online foi necessario ser utilizado o sqlite para armazenamento de dados interno no sistema para que o mesmo não pare sua aplicação online no Streamlit community, ja que como meu container postgres é local, não haveria conexão logo não exibindo a aplicação de maneira correta.
