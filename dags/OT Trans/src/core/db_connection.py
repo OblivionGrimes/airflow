@@ -1,8 +1,14 @@
-
+import sys
+from pathlib import Path
 from dotenv import load_dotenv
 import psycopg2
 import os
-load_dotenv()
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+env_path = BASE_DIR / ".env"
+
+# Carrega o .env da raiz do OT Trans
+load_dotenv(dotenv_path=env_path)
 
 def get_connection():
     return psycopg2.connect(
