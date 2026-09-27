@@ -86,7 +86,7 @@ num_mes = list(meses.values()).index(side)
 if num_mes == 0:
     query = ''
 else:
-    query = f'WHERE EXTRACT(MONTH FROM "DataMovimento") = {num_mes}'
+    query = num_mes
     
 st.subheader("Demanda total por dia")
 demanda_dias = dados_demanda_dia(query)

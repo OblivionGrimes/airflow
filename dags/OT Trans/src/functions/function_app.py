@@ -19,11 +19,19 @@ def carregar_dados(query: str):
             return pd.read_sql(query, conn)
     
 def dados_demanda_dia (where = ''):
-    query = f""" select "DataMovimento", sum("Demanda") as demanda_total from dados {where} GROUP BY "DataMovimento" ORDER BY "DataMovimento"; """
+        
     try:
+        if where == '':
+            query = f""" select "DataMovimento", sum("Demanda") as demanda_total from dados GROUP BY "DataMovimento" ORDER BY "DataMovimento"; """
+        else:
+            query = f""" select "DataMovimento", sum("Demanda") as demanda_total from dados where extract(month from "DataMovimento") = '{where}' GROUP BY "DataMovimento" ORDER BY "DataMovimento"; """
         with get_connection() as conn:
             return pd.read_sql(query, conn)
     except Exception as e:
-        sqlite_uri = f"file:{SQLITE.as_posix()}?mode=ro"
+        sqlite_uri = f"file:{SQLITE.resolve().as_posix()}?mode=ro"
+        if where == '':
+            query = f'SELECT "DataMovimento", SUM("Demanda") AS demanda_total FROM dados GROUP BY "DataMovimento" ORDER BY "DataMovimento";'
+        else:
+            query = f"""SELECT "DataMovimento", SUM("Demanda") AS demanda_total FROM dados where strftime("%m", \"DataMovimento\") = '{where:02d}' GROUP BY "DataMovimento" ORDER BY "DataMovimento";"""
         with sqlite3.connect(sqlite_uri, uri=True) as conn:
             return pd.read_sql(query, conn)
