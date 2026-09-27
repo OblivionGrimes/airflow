@@ -84,7 +84,7 @@ st.dataframe(dfMes.groupby("NomePassageiro")["Demanda"].sum().sort_values(ascend
 st.divider()
 num_mes = list(meses.values()).index(side)
 if num_mes == 0:
-    query = ''
+    query = None
 else:
     query = num_mes
     
