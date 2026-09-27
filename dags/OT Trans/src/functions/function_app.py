@@ -32,6 +32,6 @@ def dados_demanda_dia (where = ''):
         if where == '':
             query = f'SELECT "DataMovimento", SUM("Demanda") AS demanda_total FROM dados GROUP BY "DataMovimento" ORDER BY "DataMovimento";'
         else:
-            query = f"""SELECT "DataMovimento", SUM("Demanda") AS demanda_total FROM dados where strftime("%m", \"DataMovimento\") = '{where:02d}' GROUP BY "DataMovimento" ORDER BY "DataMovimento";"""
+            query = f"""SELECT "DataMovimento", SUM("Demanda") AS demanda_total FROM dados where strftime('%m', \"DataMovimento\") = '{where:02d}' GROUP BY "DataMovimento" ORDER BY "DataMovimento";"""
         with sqlite3.connect(sqlite_uri, uri=True) as conn:
             return pd.read_sql(query, conn)
