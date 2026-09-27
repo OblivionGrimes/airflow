@@ -82,12 +82,9 @@ else:
 st.dataframe(dfMes.groupby("NomePassageiro")["Demanda"].sum().sort_values(ascending=False), use_container_width=True)
 
 st.divider()
-num_mes = list(meses.values()).index(side)
-if num_mes == 0:
-    query = None
-else:
-    query = num_mes
-    
+num_mes_selecionado = list(meses.values()).index(side)
+num_mes = None if num_mes_selecionado == 0 else num_mes_selecionado
+
 st.subheader("Demanda total por dia")
-demanda_dias = dados_demanda_dia(query)
+demanda_dias = dados_demanda_dia(num_mes)
 st.dataframe(demanda_dias, use_container_width=True)
